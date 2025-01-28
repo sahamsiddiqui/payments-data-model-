@@ -1,5 +1,7 @@
 # **Payment Data Modeling with dbt and DuckDB**  
 
+Status : on-going 
+
 Welcome to my project on **Data Modeling Payment Data** using **dbt Core** and **DuckDB**!  
 
 In this project, I demonstrate advanced **dbt best practices** while building a robust data model for payment data. Going beyond the fundamentals, I explore and implement:  
