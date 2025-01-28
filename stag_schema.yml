@@ -1,0 +1,74 @@
+
+version: 2
+
+models:
+    - name: stg_instrument_token
+      description: "staging data model for payment_instrument_token_data csv file "
+      columns:
+          - name: token_id
+            description: "The primary key for this table"
+            tests:
+              - not_null
+              - unique
+          - name: network
+            description: "Categorical column for the type of network"
+            tests:
+              - not_null
+              - accepted_values:
+                  values:
+                  - AMEX
+                  - MASTERCARD
+                  - VISA
+                  - DINERS_CLUB
+                  
+                  
+                
+          
+
+    - name: stg_payment_data
+      description: "A dbt model for our raw source csv payment_data "
+      columns:
+          - name: payment_id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: status
+            description: "This is a categorical column for payment status"
+            test:
+                - not_null
+                - accepted_values:
+                  values:
+                  - PENDING
+                  - SETTLED
+                  - AUTHORIZED
+                  - CANCELLED
+                  - FAILED
+                  - DECLINED
+                  - SETTLING
+                  - PARTIALLY_SETTLED
+
+
+
+    - name: stg_payment_request
+      description: "A stage dbt model for our csn payment_request_data"
+      columns:
+          - name: payment_request_id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: payment_request_type
+            description: "This is a categorical column for payment request"
+            test:
+                - not_null
+                - accepted_values:
+                  values:
+                  - PAYMENT_CAPTURE_REQUEST
+                  - PAYMENT_REFUND_REQUEST
+                  - PAYMENT_CANCEL_REQUEST
+                  - PAYMENT_CREATION_REQUEST
+                  - FAILED
+                  - DECLINED
+                  - SETTLING
+                  - PARTIALLY_SETTLED
